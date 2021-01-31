@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { PaymentIconService } from './payment-icon.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'creditcard';
+  constructor() {}
+
+  icon: any;
+
+  onIcon(relativeicon: any) {
+   this.icon = relativeicon;
+   console.log(this.icon)
+  }
 }

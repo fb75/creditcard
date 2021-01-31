@@ -1,0 +1,50 @@
+<!-- per utilizzare il form definisco attributo formGroup che punta all'istanza creata nella classe -->
+<!-- angular controlla i campi con formControlName che -->
+<div class="columns">
+  <div class="column">
+    <app-card 
+      [name]="cardForm.get('name').value" 
+      [cardNumber]="cardForm.get('cardNumber').value"
+      [expiration]="cardForm.controls.expiration.value" 
+      [securityCode]="cardForm.get('securityCode').value"
+      [icon]="relicon"
+      >
+    </app-card>
+  </div>
+  <div class="column">
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+      <app-input label="Name" [control]="cardForm.get('name')"></app-input>
+      <app-input label="Card Number" [control]="cardForm.get('cardNumber')"></app-input>
+      <div class="columns">
+        <div class="column">
+          <app-input label="Expiration MM/YY" [control]="cardForm.get('expiration')"></app-input>
+        </div>
+        <div class="column">
+          <app-input label="Security Code" [control]="cardForm.get('securityCode')"></app-input>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <svg *ngFor="let icon of sanitized; let i = index;" [innerHTML]="icon" id="ccicon" (click)="onClick(i)" class="ccicon"
+            width="100" height="120" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+          </svg>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">Submit</button>
+        <button class="button is-warning" type="button" (click)="onResetClick()">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<hr />
+
+
+<!-- <div>Forms Contents: {{cardForm.value | json}}</div>
+<div>Form is valid: {{cardForm.valid}}</div>
+<div>Errors around name: {{ cardForm.controls.name.errors | json }}</div> -->
